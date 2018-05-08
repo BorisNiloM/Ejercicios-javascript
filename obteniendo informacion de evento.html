@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Obteniendo informacion de evento </title>
+</head>
+<style>
+	p{
+		margin-top: 10px;
+		margin-left: :100px;
+	}
+</style>
+<body>
+	<p>  Obteniendo informacion de evento</p>
+	<p>  Object event </p>
+	<p> Al presionar una tecla, se obtiene informacion y se imprime en pantalla, de tecla presionada</p>
+
+	<div id="info"></div>
+
+<script>
+	// informacion de teclado
+	window.onload = function() {
+	  document.onkeyup = muestraInformacion;
+	  document.onkeypress = muestraInformacion;
+	  document.onkeydown = muestraInformacion;
+	}
+	 
+	function muestraInformacion(elEvento) {
+	  var evento = window.event || elEvento;
+	 
+	  var mensaje = "Tipo de evento: " + evento.type + "<br>" +
+	                "Propiedad keyCode: " + evento.keyCode + "<br>" +
+	                "Propiedad charCode: " + evento.charCode + "<br>" +
+	                "Carácter pulsado: " + String.fromCharCode(evento.charCode);
+	 
+	  info.innerHTML += "<br>--------------------------------------<br>" + mensaje
+	}
+	// fin informacion de teclado
+
+	// informacion de mouse
+
+	// 1. respecto a la ventana del navegador
+	// function muestraInformacion(elEvento) {
+	//   var evento = elEvento || window.event;
+	//   var coordenadaX = evento.clientX;
+	//   var coordenadaY = evento.clientY;
+	//   alert("Has pulsado el ratón en la posición: " + coordenadaX + ", " + coordenadaY);
+	// }
+	 
+	// document.onclick = muestraInformacion;
+
+	// 2. respecto a la pantalla del pc
+	// var coordenadaX = evento.screenX;
+	// var coordenadaY = evento.screenY;
+
+	//3. respecto del origen de la pagina cuando se ha hecho scroll
+	// var ie = navigator.userAgent.toLowerCase().indexOf('msie')!=-1;
+	 
+	// if(ie) {
+	//   coordenadaX = evento.clientX + document.body.scrollLeft;
+	//   coordenadaY = evento.clientY + document.body.scrollTop;
+	// }
+	// else {
+	//   coordenadaX = evento.pageX;
+	//   coordenadaY = evento.pageY;
+	// }
+	// alert("Has pulsado el ratón en la posición: " + coordenadaX + ", " + coordenadaY + " respecto de la página web");
+
+
+</script>
+
+</body>
+</html>

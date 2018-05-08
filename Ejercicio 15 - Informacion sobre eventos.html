@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejercicio 15 - Informacion sobre eventos</title>
+<!-- Completar el código JavaScript proporcionado para que:
+
+    1. Al mover el ratón en cualquier punto de la ventana del navegador, se muestre la posición del puntero respecto del navegador y respecto de la página
+    2. Al pulsar cualquier tecla, el mensaje mostrado debe cambiar para indicar el nuevo evento y su información asociada
+    3.Añadir la siguiente característica al script: cuando se pulsa un botón del ratón, el color de fondo del cuadro de mensaje debe ser amarillo (#FFFFCC) y cuando se pulsa una tecla, el color de fondo debe ser azul (#CCE6FF). Al volver a mover el ratón, el color de fondo vuelve a ser blanco.   -->
+
+<style>
+body {
+	font-family: arial, helvetica;
+}
+#info {
+	width:160px; 
+	border:thin solid silver; 
+	padding:.5em; 
+	position:fixed;
+}
+#info h1 {
+	margin: 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="info"></div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+window.onload = function() {
+	  document.onclick = muestraInformacion;
+	  document.onkeypress = muestraInformacion;
+	  document.onmousemove = muestraInformacion;
+	}
+function muestraInformacion(elEvento) {
+	var evento = elEvento;
+    var cuadro = document.getElementById("info");
+    switch (evento.type) {
+    	case "click":
+    		var mensaje = [];
+		    mensaje[0]= "Raton";
+			var coordenadaX = evento.clientX;
+			var coordenadaY = evento.clientY;
+			mensaje[1] = "<br>Navegador ["+coordenadaX+","+coordenadaY+"]<br>"
+			var coordenadaX = evento.pageX;
+			var coordenadaY = evento.pageY;
+			mensaje[2] = "Pagina ["+coordenadaX+","+coordenadaY+"]"+"<br>";
+			cuadro.style.background = '#FFFFCC';
+    		break;
+    	case "keypress":
+    		var mensaje = [];
+		    mensaje[0]= "Teclado";
+			var caracter = evento.charCode;
+			mensaje[1] = "<br>Caracter ["+String.fromCharCode(caracter)+"]<br>";
+			mensaje[2] = "Codigo ["+caracter+"] <br>";
+    		cuadro.style.background = '#CCE6FF';
+    		break;
+    	case "mousemove":
+    		
+    	    cuadro.style.background = 'white';
+    		
+    		break;
+    	default:
+    		// statements_def
+    		break;
+    }
+    
+
+	cuadro.innerHTML = '<h1>'+mensaje[0]+'</h1>';
+	for(var i=1; i<mensaje.length; i++) {
+		cuadro.innerHTML += '<p>'+mensaje[i]+'</p>';
+	}
+}
+
+
+</script>
+
+</body></html>
