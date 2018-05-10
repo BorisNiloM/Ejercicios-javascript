@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Utilidades Basicas para obtener valores de Formularios</title>
+</head>
+<body>
+	<p>1. Cuadro de texto</p>
+	<input type="text" id ="texto">
+	<button id="boton1">Selecciona</button>
+	<p id="1"></p>
+    
+    <p>2. Text area</p>
+    <textarea  id="parrafo" cols="30" rows="10"></textarea>
+	<button id="boton2">Selecciona</button>
+	<p id="2"></p>
+
+	<p>3. Radiobuttons</p>
+	<input type="radio" value="Si" name="pregunta" id="pregunta_si">SI
+	<input type="radio" value="No" name="pregunta" id="pregunta_no">NO
+	<input type="radio" value="nsnc" name="pregunta" id="pregunta_nsnc">NS/NC
+	<button id="boton3">Selecciona</button>
+	<p id="3"></p>
+
+	<p>4. Checkbox</p>
+	<input type="checkbox" value="condiciones" name="condiciones" id="condiciones">He leido y acepto las condiciones
+	<input type="checkbox" value="privacidad" name="privacidad" id="privacidad">He leido la politica de privacidad
+	<button id="boton4">Selecciona</button>
+	<p id="4"></p>
+
+
+    <p>5. Listas desplegables</p>
+	<select name="opciones" id="opciones">
+		<option value="1">Primer valor</option>
+		<option value="2">Segundo valor</option>
+		<option value="3">Tercer valor</option>
+		<option value="4">Cuarto valor</option>
+	</select>
+	<button id="boton5">Selecciona</button>
+	<p id="5"></p>
+
+<script>
+	//Cuadro de texto
+	document.getElementById("texto").focus();
+	document.getElementById("boton1").onclick = function () {
+		var valor= document.getElementById("texto").value;
+		document.getElementById("1").innerHTML = valor;
+    	};
+    //Text Area
+    document.getElementById("boton2").onclick = function(){
+    	var valor = document.getElementById("parrafo").value;
+    	document.getElementById("2").innerHTML = valor;
+    };
+    //RadioButtons
+    document.getElementById("boton3").onclick = function(){
+    	var elementos = document.getElementsByName("pregunta");
+    	for(var i=0; i<elementos.length;i++){
+    		if(elementos[i].checked){
+    		document.getElementById("3").innerHTML = "Elemento: " +elementos[i].value +
+    		"<br> Seleccionado: " + elementos[i].checked;
+    	    };
+    	};	
+    };
+
+    //checkbox
+    document.getElementById("boton4").onclick = function(){
+    	var elemento1 = document.getElementById("condiciones");
+    	var elemento2 = document.getElementById("privacidad");
+        
+        document.getElementById("4").innerHTML = " Elemento: " + elemento1.value +" Seleccionado: " + elemento1.checked + "<br> Elemento: " + elemento2.value +
+        " Seleccionado: " + elemento2.checked;;
+    };
+
+    //listas desplegables
+	function seleccion(){
+		//obtener la referencia a la lista
+		var lista = document.getElementById("opciones")
+
+		//Obtener el indice de la opcion que se ha seleccionado
+		var indiceSeleccionado = lista.selectedIndex;
+
+		// con el indice y el array "options", obtener la opcion seleccionada
+		var opcionSeleccionada = lista.options[indiceSeleccionado];
+
+		//obtener el valor y el texto de la opcion seleccionada
+		var textoSeleccionado = opcionSeleccionada.text;
+		var valorSeleccionado = opcionSeleccionada.value;
+
+		document.getElementById("5").innerHTML = "Opción seleccionada: " + textoSeleccionado + " Valor de la opción: " + valorSeleccionado;
+	}
+	document.getElementById("boton5").onclick = seleccion;
+    
+</script>
+</body>
+</html>
