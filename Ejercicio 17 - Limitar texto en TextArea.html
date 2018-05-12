@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Limitar caracteres en un text area</title>
+</head>
+<body>
+	<div>
+	<textarea name="" id="areaTexto"  onkeypress="return limite(event, 100);" onkeyup="actualizaInfo(100)"></textarea>
+	</div>
+	<p id="info"></p>
+	
+
+<script>
+	
+	var parrafo = document.getElementById("areaTexto");
+    
+	function limite(elEvento, maximoCaracteres){
+		var evento = elEvento;
+		var codigoCaracter = evento.keyCode
+        if(codigoCaracter == 37 || codigoCaracter == 39 || codigoCaracter == 8 || codigoCaracter == 46){
+        	return true
+        }
+		else if(parrafo.value.length >= maximoCaracteres){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	function actualizaInfo(maximoCaracteres){
+		var diferencia = maximoCaracteres - parrafo.value.length;
+        document.getElementById("info").innerHTML = "Te quedan: "+diferencia+" caracteres";
+
+	}
+
+
+</script>
+</body>
+</html>
+
+
+<!-- 
+supr keyCode 46
+backspace = keyCode 8
+izquierda = keycode 37
+derecha = keycode 39 
+-->
