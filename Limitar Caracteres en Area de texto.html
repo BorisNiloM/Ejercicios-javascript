@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Limitar Caracteres en TextArea</title>
+	
+</head>
+<body>
+
+<div>
+	<p>1. Se permiten solo numeros en textArea</p>
+	<textarea name="" id="parrafo" onkeypress=" return examinar(event,num)"></textarea>
+</div>
+<div>
+	<p>2. Se permiten solo letras en textArea</p>
+	<textarea name="" id="parrafo" onkeypress=" return examinar(event,letras)"></textarea>
+</div><div>
+	<p>3. Se permiten  numeros y letras en textArea</p>
+	<textarea name="" id="parrafo" onkeypress=" return examinar(event,num_letras)"></textarea>
+</div>
+
+	
+	<script>
+		
+		var num = '1234567890';
+		var letras = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ';			
+		var num_letras= num+letras;
+
+		function examinar(elEvento, caract){
+			
+			var evento = elEvento;
+			var tecla = evento.keyCode || evento.charCode;
+			var caracter = String.fromCharCode(tecla);
+			// supr = keyCode 46
+			// backspace = keyCode 8
+			// izquierda = keycode 37
+			// derecha = keycode 39 
+
+			if(tecla == 46 || tecla == 8 || tecla == 37 || tecla == 39){
+				return true;
+			}else if( caract.indexOf(caracter)  != -1){
+				return true
+			}else{
+				return false
+			}
+
+		}
+
+	</script>
+</body>
+</html>
+
