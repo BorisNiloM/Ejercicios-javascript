@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplo de validacion de formularios</title>
+	<style>
+		.aviso{
+			color: red; 
+		}
+		.fecha{
+			width:30px;
+		}
+	</style>
+</head>
+<body>
+
+	<div>
+		<p>1. Validar un campo de texto obligatorio</p>
+		<input type="text" id= "campo1">
+		<button id="boton1">Validar</button>
+		<p id="info1" class="aviso"></p>
+	</div>
+	<div>
+		<p>2. Validar un campo de texto con valores numericos</p>
+		<input type="text" id= "campo2">
+		<button id="boton2">Validar</button>
+		<p id="info2" class="aviso"></p>
+	</div>	
+	<div>
+		<p>3. Validar que se ha seleccionado una opcion de una lista</p>
+		<select name="opciones" id="opciones">
+			<option value="">-Selecciona un valor</option>
+			<option value="1">Primer valor</option>
+			<option value="2">Segundo valor</option>
+			<option value="3">Tercer valor</option>
+		</select>
+		<button id="boton3">Validar</button>
+		<p id="info3" class="aviso"></p>
+	</div>
+	<div>
+		<p>4. Validar una direccion de email</p>
+		<input type="email" id= "campo4">
+		<button id="boton4">Validar</button>
+		<p id="info4" class="aviso"></p>
+	</div>
+	<div>
+		<p>5. Validar una fecha. Ingrese los valores correspondientes (con fallas, arreglar)</p>
+		Año:<input type="text" id= "ano" class="fecha">
+		Mes:<input type="text" id= "mes" class="fecha">
+		Dia:<input type="text" id= "dia" class="fecha">
+		<button id="boton5">Validar</button>
+		<p id="info5" class="aviso"></p>
+	</div>		
+	<div>
+		<p>6. Validar un numero de telefono celular de 9 digitos</p>
+		<input type="text" id= "campo6">
+		<button id="boton6">Validar</button>
+		<p id="info6" class="aviso"></p>
+	</div>
+	<div>
+		<p>7. Validar que un checkBox ha sido seleccionado</p>
+		<p>Usted es: </p>
+		<input type="checkbox" name ="femenino" id="femenino" value="Mujer">Mujer 
+		<input type="checkbox" name ="masculino" id="masculino" value="Hombre">Hombre
+		<button id="boton7">Validar</button>
+		<p id="info7" class="aviso"></p>
+	</div>
+	<div>
+		<p>8. Validar que un radioButton ha sido seleccionado</p>
+		<p>Seleccione una opcion: </p>
+		<input type="radio" name ="pregunta" id="pregunta_si" value="Si">Si 
+		<input type="radio" name ="pregunta" id="pregunta_no" value="No">No
+		<input type="radio" name ="pregunta" id="pregunta_nsnc" value="nsnc">NS/NC
+		<button id="boton8">Validar</button>
+		<p id="info8" class="aviso"></p>
+	</div>
+
+	<script>
+		//1. validar campo de texto
+		// Se valida que campo de texto tenga un valor introducido valido, que numero de caracteres sea mayor que cero y que no se hayan introducido solo valores en blanco
+
+		document.getElementById("boton1").onclick = function(){
+			var valor = document.getElementById("campo1").value;
+			if( valor == null || valor.length == 0 || /^\s+$/.test(valor)){
+				document.getElementById("info1").innerHTML= "Complete el campo de texto";
+				return false;
+			}else{
+				document.getElementById("info1").innerHTML="";
+			};
+		};
+		// 2.validar con valores numericos
+		// isNan = no es un valor numerico, devuelve true si no es un numero
+		document.getElementById("boton2").onclick = function(){
+			var valor = document.getElementById("campo2").value;
+			if( isNaN(valor)){
+				document.getElementById("info2").innerHTML= "Introdusca un valor numerico";
+				return false;
+				}else{
+				document.getElementById("info2").innerHTML="";
+			};
+		};
+		// 3. Validar que se ha sellecionado una opcion de una lista
+		document.getElementById("boton3").onclick = function(){
+			var indice = document.getElementById("opciones").selectedIndex;
+			if(indice == null || indice == 0){
+				document.getElementById("info3").innerHTML = "Seleccione una opcion";
+				return false
+			}else{
+				document.getElementById("info3").innerHTML = "";
+			};
+		};
+		
+		// 4. Validar una direccion de email
+		// se utiliza la expresion regular (/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/) a la fehca 14/05/18
+		document.getElementById("boton4").onclick = function(){
+			var valor = document.getElementById("campo4").value;
+			if(!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/.test(valor))){
+				document.getElementById("info4").innerHTML = "Ingrese un email correcto";
+				return false
+			}else{
+				document.getElementById("info4").innerHTML = "";
+			};
+		};
+		// 5. Validar una fecha
+		// no funciona encontrar problema
+		document.getElementById("boton5").onclick = function(){
+			var ano = document.getElementById("ano").value;
+			var mes = document.getElementById("mes").value;
+			var dia = document.getElementById("dia").value;
+
+			valor = new Date(ano,mes,dia);
+
+			if( !isNaN(valor)){
+				document.getElementById("info5").innerHTML= "Ingrese una fecha";
+				return false;
+			}else{
+				document.getElementById("info5").innerHTML="";
+			};
+		};
+		// 6. Validar un numero de telefono
+		document.getElementById("boton6").onclick = function(){
+			var valor = document.getElementById("campo6").value;
+			if(!(/^\d{9}$/.test(valor))){
+				document.getElementById("info6").innerHTML= "Ingrese un telefono valido";
+				return false;
+			}else{
+				document.getElementById("info6").innerHTML="";
+			};
+		};
+		// 7. Validar que un checkbox ha sido seleccionado
+		document.getElementById("boton7").onclick = function(){
+			var elemento = document.getElementById("femenino");
+			if(!elemento.checked){
+				document.getElementById("info7").innerHTML= "Debes seleccionar femenino";
+				return false;
+			}else{
+				document.getElementById("info7").innerHTML="";
+			};
+		};
+		// 8. Validar que un radiobutton ha sido seleccionado
+		document.getElementById("boton8").onclick = function(){
+			var opciones= document.getElementsByName("pregunta");
+			var seleccionado = false;
+			for(var i=0;i<opciones.length;i++){
+				if(opciones[i].checked){
+					selecionado = true;
+					break
+				}	
+			}
+			if(!selecionado){
+				document.getElementById("info8").innerHTML= "Debes elegir una opcion";
+				return false;
+			}else{
+				document.getElementById("info8").innerHTML="";
+			};
+			
+		};
+
+	</script>
+</body>
+</html>
