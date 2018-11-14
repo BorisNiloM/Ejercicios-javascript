@@ -24,3 +24,14 @@ const squareList = (arr) => {
 // test your code
 const squaredIntegers = squareList(realNumberArray);
 console.log(squaredIntegers);
+
+// Ejemplo usando reduce()
+
+const sum = (function() {
+    "use strict";
+    return function sum(...args) {
+
+        return args.reduce((a, b) => a + b, 0);
+    };
+})();
+console.log(sum(1, 2, 3)); // 6
