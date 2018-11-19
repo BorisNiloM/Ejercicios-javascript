@@ -19,4 +19,4 @@ Para ejecutar los archivos JS en la terminal se recomienda usar [nodemon](https:
    Se usa en el ejercicio los metodos para arrays ```map()```, ```filter()``` y ```reduce()```
 + **ejercicio4.js**
 
-   Ejemplos de destructuracion en ES6
+   Ejemplos varios  de destructuracion en ES6
