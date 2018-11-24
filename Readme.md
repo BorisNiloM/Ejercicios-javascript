@@ -20,3 +20,5 @@ Para ejecutar los archivos JS en la terminal se recomienda usar [nodemon](https:
 + **ejercicio4.js**
 
    Ejemplos varios  de destructuracion en ES6
+ + **ejercicio5.js**
+   Ejemplos de Regular Expresions
