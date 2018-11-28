@@ -2,7 +2,7 @@
 
 Los primeros ejercicios, son de la pagina [Libros Web](https://librosweb.es/libros/).
 
-Los ejercicios de FreeCodeCamp son parte de la certificacion de [freeCodeCamp](https://learn.freecodecamp.org/) para javascript.
+Los ejercicios de FreeCodeCamp son parte de la certificacion de [freeCodeCamp](https://learn.freecodecamp.org/) para javascript. Los archivos, algunos vienen con varios ejercicios, lo ideal es copiar la seccion que se quiera en un nuevo archivo js, para despues ejecutarlo.
 
 Para ejecutar los archivos JS en la terminal se recomienda usar [nodemon](https://www.npmjs.com/package/nodemon).
 
@@ -20,5 +20,12 @@ Para ejecutar los archivos JS en la terminal se recomienda usar [nodemon](https:
 + **ejercicio4.js**
 
    Ejemplos varios  de destructuracion en ES6
- + **ejercicio5.js**
++ **ejercicio5.js**
    Ejemplos de Regular Expresions
+
++ **ejercicio6.js**
+   Ejercicios de estructura de datos
+
++ **ejercicio7.js**
+   Ejercicios de algoritmos basicos
+
