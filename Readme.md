@@ -29,3 +29,6 @@ Para ejecutar los archivos JS en la terminal se recomienda usar [nodemon](https:
 + **ejercicio7.js**
    Ejercicios de algoritmos basicos
 
++ **ejercicio8.js**
+   Ejemplos de programacion orientada a objetos en javascript
+
