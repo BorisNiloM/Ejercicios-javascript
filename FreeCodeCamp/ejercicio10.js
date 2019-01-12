@@ -1,18 +1,11 @@
-// the global variable
-var globalTitle = " Winter Is  Coming";
-
-// Add your code below this line
-function urlSlug(title) {
-    return title.toLowerCase().split(" ").filter(word => {
-        if (word) {
-            return word
+function add(x) {
+    // Add your code below this line
+    return function(y) {
+        return function(z) {
+            return x + y + z;
         }
-    }).join("-");
+    }
 
+    // Add your code above this line
 }
-// Add your code above this line
-
-var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
-
-console.log(winterComing);
-console.log(globalTitle);
+console.log(add(10)(20)(30));

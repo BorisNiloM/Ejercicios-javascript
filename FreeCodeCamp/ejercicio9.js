@@ -764,3 +764,59 @@ var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
 
 console.log(winterComing);
 console.log(globalTitle);
+
+//========================================================================================================================================================
+//=====18)Use the every method inside the checkPositive function to check if every element in arr is positive. The function should return a Boolean value.
+//========================================================================================================================================================
+
+// every(funcion()), evalua cada elemento segun funcion(), y retorna true si todos los elementos cumplen. En caso contrario False
+function checkPositive(arr) {
+    // Add your code below this line
+
+    return arr.every(function(a) {
+        return a >= 0;
+    });
+
+    // Add your code above this line
+}
+console.log(checkPositive([12, 5, 8, 130, 44]));
+
+//=======================================================================================================================================================
+//=====19) Use the some method inside the checkPositive function to check if any element in arr is positive. The function should return a Boolean value.
+//=======================================================================================================================================================
+
+//some(funcion()), evalua cada elemento segun funcion() y retorna true si por lo menos un elemento cumple. En caso contrario retorna False
+function checkPositive(arr) {
+    // Add your code below this line
+    return arr.some(a => a >= 0);
+
+    // Add your code above this line
+}
+console.log(checkPositive([1, 2, 3, -4, 5]));
+
+//===============================================================================================
+//=====20)Fill in the body of the add function so it uses currying to add parameters x, y, and z.
+//===============================================================================================
+
+//The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
+//Otro ejemplo
+/* function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+var funcForY = curried(1); //guarda la llamada a la funcion en una variable a la espera del siguiente argumento cuando este disponible
+console.log(funcForY(2)); // Prints 3 */
+
+
+function add(x) {
+    // Add your code below this line
+    return function(y) {
+        return function(z) {
+            return x + y + z;
+        }
+    }
+
+    // Add your code above this line
+}
+console.log(add(10)(20)(30));
