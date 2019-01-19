@@ -134,7 +134,7 @@ function add(arr, bookName) {
 function remove(arr, bookName) {
     let newArr = [...arr]; // Copy the bookList array to a new array.
     if (newArr.indexOf(bookName) >= 0) { // Check whether the bookName parameter is in new array.
-        /.
+
         newArr.splice(newArr.indexOf(bookName), 1); // Remove the given paramater from the new array.
         return newArr; // Return the new array.
     }
@@ -290,7 +290,7 @@ Array.prototype.myMap = function(callback) {
     var newArray = [];
     // Add your code below this line
     this.forEach(a => newArray.push(callback(a)));
-    //el this es para cada elemento en el cual se aplique myMap
+    // **** el this es para cada elemento en el cual se aplique myMap
     // Add your code above this line
     return newArray;
 
@@ -727,7 +727,7 @@ console.log(splitify("Hello World,I-am code"));
 //For example, "I-like-Star-Wars" would be converted to "I like Star Wars". For this challenge, do not use the replace method
 //=====================================================================================================================================================================
 
-//El metodo join usa los elementos de un array para crear un string. El argumento se utiliza como delimitador, como (" ")
+// ***** El metodo join usa los elementos de un array para crear un string. El argumento se utiliza como delimitador, como (" ")
 function sentensify(str) {
     // Add your code below this line
 
@@ -769,7 +769,7 @@ console.log(globalTitle);
 //=====18)Use the every method inside the checkPositive function to check if every element in arr is positive. The function should return a Boolean value.
 //========================================================================================================================================================
 
-// every(funcion()), evalua cada elemento segun funcion(), y retorna true si todos los elementos cumplen. En caso contrario False
+// **** every(funcion()), evalua cada elemento segun funcion(), y retorna true si todos los elementos cumplen. En caso contrario False
 function checkPositive(arr) {
     // Add your code below this line
 
@@ -785,7 +785,7 @@ console.log(checkPositive([12, 5, 8, 130, 44]));
 //=====19) Use the some method inside the checkPositive function to check if any element in arr is positive. The function should return a Boolean value.
 //=======================================================================================================================================================
 
-//some(funcion()), evalua cada elemento segun funcion() y retorna true si por lo menos un elemento cumple. En caso contrario retorna False
+// ***** some(funcion()), evalua cada elemento segun funcion() y retorna true si por lo menos un elemento cumple. En caso contrario retorna False
 function checkPositive(arr) {
     // Add your code below this line
     return arr.some(a => a >= 0);
@@ -805,7 +805,7 @@ console.log(checkPositive([1, 2, 3, -4, 5]));
     return x + y;
   }
 }
-var funcForY = curried(1); //guarda la llamada a la funcion en una variable a la espera del siguiente argumento cuando este disponible
+**** var funcForY = curried(1); //guarda la llamada a la funcion en una variable a la espera del siguiente argumento cuando este disponible
 console.log(funcForY(2)); // Prints 3 */
 
 
