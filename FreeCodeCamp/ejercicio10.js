@@ -303,3 +303,237 @@ console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
 //================================================================================================================================
 //=====10) Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
 //================================================================================================================================
+
+//mi solucion
+function convertHTML(str) {
+
+    let arr = str.split("");
+    let resp = [];
+    for (let i = 0; i < arr.length; i++) {
+        switch (arr[i]) {
+            case "&":
+                resp.push("&amp;");
+                break;
+            case "<":
+                resp.push("&lt;")
+                break;
+            case ">":
+                resp.push("&gt;")
+                break;
+            case "\"":
+                resp.push("&quot;")
+                break;
+            case "\'":
+                resp.push("&apos;")
+                break;
+            default:
+                resp.push(arr[i])
+        }
+    }
+
+    return resp.join("")
+}
+console.log(convertHTML('Stuff in "quotation marks"'));
+
+// ==== solucion corta
+function convertHTML(str) {
+    // Use Object Lookup to declare as many HTML entities as needed.
+    htmlEntities = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '\'': "&apos;"
+    };
+    //Use map function to return a filtered str with all entities changed automatically.
+    return str.split('').map(entity => htmlEntities[entity] || entity).join('');
+}
+
+// test here
+convertHTML("Dolce & Gabbana");
+
+//===========================================================================================================================================
+//=====11)Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
+//The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers.
+//The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+//For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
+//===========================================================================================================================================
+function sumFibs(num) {
+    let i = 1;
+    let n = 1;
+    let arr = [1];
+    let sum = 1;
+    do {
+        arr.push(i);
+        i += arr[n - 1];
+
+        if (arr[n] % 2 !== 0) {
+            sum += arr[n];
+        }
+        n++;
+    }
+    while (i <= num)
+    return sum
+}
+
+console.log(sumFibs(75025));
+
+//=================================================================================================================================================================================
+//=====12)Sum all the prime numbers up to and including the provided number.
+//A prime number is defined as a number greater than one and having only two divisors, one and itself. For example, 2 is a prime number because it's only divisible by one and two.
+//The provided number may not be a prime.
+//=================================================================================================================================================================================
+
+function sumPrimes(num) {
+    let i = 2;
+    let sum = 0;
+    do {
+        let cont = 0;
+        for (let n = 1; n <= i; n++) {
+            if (i % n === 0) {
+                cont += 1;
+            };
+        };
+        if (cont <= 2) {
+            sum += i;
+        }
+        i++;
+    } while (i <= num);
+    return sum;
+}
+
+console.log(sumPrimes(10));
+
+
+//otra solucion
+
+function sumPrimes(num) {
+    // step 1
+    let arr = Array.from({ length: num + 1 }, (v, k) => k).slice(2);
+    // step 2
+    let onlyPrimes = arr.filter((n) => {
+        let m = n - 1;
+        while (m > 1 && m >= Math.sqrt(n)) {
+            if ((n % m) === 0)
+                return false;
+            m--;
+        }
+        return true;
+    });
+    // step 3
+    return onlyPrimes.reduce((a, b) => a + b);
+}
+
+//====================================================================================================================================================================================
+//=====13)Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+//The range will be an array of two numbers that will not necessarily be in numerical order.
+//For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+//====================================================================================================================================================================================
+
+// ==== mi respuesta
+
+function smallestCommons(arr) {
+    let aux = [];
+    let largo = 0;
+    let factores = [];
+    ////////// los multiplos de un numero siempre son numeros primos
+    function multi(num) { //busca los multiplicadores de num, y envia el multiplicar y las veces que se repite, en el formato {base,exp}, para mas adelante hacer un base^exp
+        let base = 2;
+        let exp = 0;
+        let algo = true;
+        let mul = [];
+        do {
+            if (num % base === 0) {
+                num /= base;
+                exp += 1;
+                algo = true
+            } else {
+                algo = false;
+                if (exp !== 0) {
+                    mul.push({ base, exp });
+                }
+                base += 1;
+                exp = 0;
+            }
+        } while (num !== 1)
+
+        if (algo) {
+            mul.push({ base, exp });
+        }
+        return mul
+    }
+    ////////
+    function primos(num) { // decide si num es numero primo
+        let cont = 0;
+        for (let i = 2; i <= num; i++) {
+            if (num % i === 0) {
+                cont += 1;
+            }
+        }
+        return cont === 1 ? true : false
+    }
+
+    /////// se crea un arreglo aux con los multiplicadores de los numeros, en formato {base,exp}
+    for (let i = Math.min(...arr); i <= Math.max(...arr); i++) {
+        aux.push(...multi(i));
+    };
+
+    ///// aca se revisa el arreglo aux, y se filtran los numeros que tengan las mismas bases, se elige el de mayor exponente
+    for (let i = 2; i <= Math.max(...arr); i++) {
+        if (primos(i)) {
+            largo = aux.filter(elem => elem.base === i).length; // para algunos numeros primos el largo de este arreglo puede ser cero
+            if (largo) {
+                // se filtra el arreglo para bases iguales, se ordena para el de mayor exponente que queda ultimo en el arreglo y se selecciona
+                factores.push(aux.filter(elem => elem.base === i).sort((a, b) => a.exp - b.exp)[largo - 1]);
+            }
+        }
+    }
+
+    /////// una vez se tiene filtrado las bases con los mayores exponentes , se multiplican entre si
+    return factores.map(elem => Math.pow(elem.base, elem.exp)).reduce((total, elem) => total *= elem);
+}
+console.log(smallestCommons([23, 18]))
+
+// ==== solucion mas avanzada
+
+function smallestCommons(arr) {
+
+    // range
+    let min = Math.min.apply(null, arr);
+    let max = Math.max.apply(null, arr);
+
+    let smallestCommon = lcm(min, min + 1);
+
+    while (min < max) {
+        min++;
+        smallestCommon = lcm(smallestCommon, min);
+    }
+
+    return smallestCommon;
+}
+
+/**
+ * Calculates Greatest Common Divisor
+ * of two nubers using Euclidean algorithm
+ * https://en.wikipedia.org/wiki/Euclidean_algorithm
+ */
+function gcd(a, b) {
+    while (b > 0) {
+        let tmp = a;
+        a = b;
+        b = tmp % b;
+    }
+    return a;
+}
+
+/**
+ * Calculates Least Common Multiple
+ * for two numbers utilising GCD
+ */
+function lcm(a, b) {
+    return (a * b / gcd(a, b));
+}
+
+
+// test here
+smallestCommons([1, 5]);
